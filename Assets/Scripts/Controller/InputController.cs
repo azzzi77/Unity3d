@@ -4,6 +4,8 @@ namespace Geekbrains
 {
     public sealed class InputController : BaseController, IExecute
     {
+        private KeyCode _savePlayer = KeyCode.C;
+        private KeyCode _loadPlayer = KeyCode.V;
         private KeyCode _activeFlashLight = KeyCode.F;
         private KeyCode _cancel = KeyCode.Escape;
         private KeyCode _reloadClip = KeyCode.R;
@@ -34,7 +36,16 @@ namespace Geekbrains
             {
                 ServiceLocator.Resolve<WeaponController>().ReloadClip();
             }
-            
+            else if (Input.GetKeyDown(_savePlayer))
+            {
+                ServiceLocator.Resolve<SaveDataRepository>().Save();
+            }
+
+            else if (Input.GetKeyDown(_loadPlayer))
+            {
+                ServiceLocator.Resolve<SaveDataRepository>().Load();
+            }
+
             if (Input.GetMouseButton(_mouseButton))
             {
                 if (ServiceLocator.Resolve<WeaponController>().IsActive)

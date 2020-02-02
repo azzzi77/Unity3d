@@ -17,11 +17,13 @@ namespace Geekbrains
                 //todo разных противников
                 if (index % 2 == 0)
                 {
-                    BotsGen = ServiceLocatorMonoBehaviour.GetService<Reference>().Bot1;
+                   // BotsGen = ServiceLocatorMonoBehaviour.GetService<Reference>().Bot1;
+                      BotsGen = Resources.Load<Bot>("Ethan");
                 }
                 else
                 {
-                    BotsGen = ServiceLocatorMonoBehaviour.GetService<Reference>().Bot2;
+                    //BotsGen = ServiceLocatorMonoBehaviour.GetService<Reference>().Bot2;
+                      BotsGen = Resources.Load<Bot>("Ethan2");
                 }
 
                 var tempBot = Object.Instantiate(BotsGen,
