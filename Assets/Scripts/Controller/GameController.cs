@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.Profiling;
 
 namespace Geekbrains
 {
@@ -14,10 +14,14 @@ namespace Geekbrains
 
         private void Update()
         {
+            Profiler.BeginSample("CheckControllers");
+
             for (var i = 0; i < _controllers.Length; i++)
             {
                 _controllers[i].Execute();
             }
+            Profiler.EndSample();
+
         }
     }
 }
