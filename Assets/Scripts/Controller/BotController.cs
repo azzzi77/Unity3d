@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 namespace Geekbrains
 {
@@ -17,11 +18,13 @@ namespace Geekbrains
                 //todo разных противников
                 if (index % 2 == 0)
                 {
-                    BotsGen = ServiceLocatorMonoBehaviour.GetService<Reference>().Bot1;
+                   // BotsGen = ServiceLocatorMonoBehaviour.GetService<Reference>().Bot1;
+                      BotsGen = Resources.Load<Bot>("Ethan");
                 }
                 else
                 {
-                    BotsGen = ServiceLocatorMonoBehaviour.GetService<Reference>().Bot2;
+                    //BotsGen = ServiceLocatorMonoBehaviour.GetService<Reference>().Bot2;
+                      BotsGen = Resources.Load<Bot>("Ethan2");
                 }
 
                 var tempBot = Object.Instantiate(BotsGen,
@@ -62,11 +65,16 @@ namespace Geekbrains
                 return;
             }
 
+            Profiler.BeginSample("CheckBots");
+
             for (var i = 0; i < _getBotList.Count; i++)
             {
                 var bot = _getBotList.ElementAt(i);
                 bot.Tick();
             }
+
+            Profiler.EndSample();
+
         }
     }
 }
